@@ -1,0 +1,51 @@
+{% extends 'todo_app/base.html' %}
+
+{% block title %}
+ABOUT PAGE
+{% endblock %}
+
+{% block content %}
+
+<div class="card text-center">
+    <h1>About</h1>
+    <p>
+        <strong>Todo App</strong> is a task management application that helps users organize their daily tasks
+        efficiently.
+        Users can add new tasks, mark them as completed, or delete them as needed.
+    </p>
+
+    <h2>🚀 Features</h2>
+    <p>User registration and login system</p>
+    <p>Add, edit, and delete tasks</p>
+    <p>Mark tasks as completed</p>
+    <p>Personalized task management</p>
+
+    <h2>🛠 Technologies Used</h2>
+    <p><strong>Django</strong> - Backend development</p>
+    <p><strong>SQLite</strong> - Database management</p>
+    <p><strong>Bootstrap</strong> - User interface design</p>
+
+    <h2>📌 Project Development Process</h2>
+    <p>
+        This project was developed during my internship to apply the technologies I learned.
+        I started by understanding the basics of Django and implemented CRUD (Create, Read, Update, Delete) operations.
+    </p>
+    <p>
+        Later, I added user authentication and authorization features.
+        For the frontend, I used Bootstrap to create a simple yet functional UI.
+    </p>
+
+    <h2>📞 Contact</h2>
+    <p>
+        If you have any feedback or suggestions about this project, feel free to reach out:
+    </p>
+    <p>Email: engharunkaya@gmail.com</p>
+    <p>GitHub: <a href="https://github.com/harnkya">My GitHub profile</a></p>
+
+
+    <div class="text-center">
+        <a type="button" class="btn btn-outline-success" href="{% url 'projects' %}">Home Page</a>
+    </div>
+    <br/>
+</div>
+{% endblock %}

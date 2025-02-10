@@ -1,0 +1,13 @@
+# Virtual Environment
+venv/
+# Pycache Files
+__pycache__/
+*.pyc
+*.pyo
+# IDE Files
+.idea/
+.vscode/
+# Temporary Files
+*.log
+*.sqlite3
+.env

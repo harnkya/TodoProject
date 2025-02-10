@@ -1,0 +1,37 @@
+{% extends "todo_app/base.html" %}
+{% block content %}
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <form method="POST" action="{% url 'todo_update' %}">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Todo Title</label>
+                            <input type="text" class="form-control" id="title" name="title" value="{{ todo.title }}"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="description" name="description"
+                                   value="{{ todo.description }}"/>
+                        </div>
+
+                        <div class="text-center">
+                            <input type="hidden" class="form-control" id="todo_id" name="todo_id"
+                                   value="{{ todo.id }}"/>
+                            <button type="submit" class="btn btn-success">Update title / description</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

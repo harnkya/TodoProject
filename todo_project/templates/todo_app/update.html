@@ -1,0 +1,49 @@
+{% extends 'todo_app/base.html' %}
+
+{% block title %}
+  CREATE PAGE
+{% endblock %}
+
+{% block content %}
+  
+
+  <div class="card text-center">
+    <div class="card-body">
+      <h5 class="card-title">TO-DO LIST</h5>
+      <p class="card-text">This is TO-DO list Python Django Web Development</p>
+    </div>
+    <div class="container">
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label">TO-DO Title</label>
+          <input type="text" class="form-control" name="title" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <input type="text" class="form-control" name="description" />
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-success">Update this TO-DO</button>
+        </div>
+      </form>
+      <br />
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var alert = document.querySelector('.js-alert')
+    
+      if (alert) {
+        console.log('Alert mesajı bulundu')
+        setTimeout(function () {
+          window.location.href = "{% url 'create' %}"
+          console.log('remove skopu') //buradan sayfayı yeniliyor
+        }, 3000)
+      }
+    })
+  </script>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'todo_app/base.html' %}
+
+{% block title %}
+Project Details
+{% endblock %}
+
+{% block content %}
+<div class="sticky-top text-end m-3">
+    <form method="POST" action="{% url 'load_create_todo' %}">
+        {% csrf_token %}
+        <input type="hidden" name="project_id" value="{{ project.id }}">
+        <button type="submit" class="btn btn-warning">Create todo</button>
+    </form>
+</div>
+
+
+<div class="container w-75">
+    <table class="table">
+        <thead>
+        <div class="text-center mt-4 mb-4">
+            <strong style="font-size: 1.5rem;">Project Details</strong>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <br>
+
+                <strong><label class="form-label">Project Title</label></strong>
+                <input type="text" class="form-control" name="title" value="{{ project.title }}"/>
+            </div>
+            <div class="mb-3">
+                <strong><label class="form-label">Description</label></strong>
+                <input type="text" class="form-control" name="description" value="{{ project.description }}"/>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">Update title / description</button>
+            </div>
+        </form>
+        <div class="mb-5"></div>
+
+        <div class="text-center mt-4 mb-4">
+            <strong style="font-size: 1.5rem;">Todos</strong>
+        </div>
+
+        <tr>
+            <th scope="col">title</th>
+            <th scope="col">State</th>
+            <th scope="col">Date and Time</th>
+            <th scope="col">Details</th>
+            <th scope="col">Delete</th>
+        </tr>
+        {% for todo in todo_list %}
+        <tr>
+            {% if todo.finished == True %}
+            <td>
+                <del>{{ todo.title }}</del>
+            </td>
+            <td>
+                <form method="POST" action="{% url 'no_finish_todo' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="todo_id" value="{{ todo.id }}">
+                    <button type="submit" class="btn btn-success">Finished</button>
+                </form>
+            </td>
+            {% else %}
+            <td>
+                {{ todo.title }}
+            </td>
+            <td>
+                <form method="POST" action="{% url 'yes_finish_todo' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="todo_id" value="{{ todo.id }}">
+                    <button type="submit" class="btn btn-primary">Not-finished</button>
+                </form>
+            </td>
+            {% endif %}
+
+            <td>
+                {{ todo.date }}
+            </td>
+            <td>
+                <form method="POST" action="{% url 'todo_details' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="todo_id" value="{{ todo.id }}">
+                    <button type="submit" class="btn btn-warning">Details</button>
+                </form>
+            </td>
+
+            <td>
+                <form method="POST" action="{% url 'delete_todo' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="todo_id" value="{{ todo.id }}">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+
+            </td>
+        </tr>
+        </thead>
+        {% endfor %}
+        {% endblock content %}

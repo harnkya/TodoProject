@@ -1,0 +1,43 @@
+{% extends 'todo_app/base.html' %}
+
+{% block title %}
+    CREATE PAGE
+{% endblock %}
+
+{% block content %}
+    <div class="card text-center">
+        <div class="container">
+            <div class="mb-5"></div>
+            <form method="POST" action="{% url 'create_project' %}">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <strong><label class="form-label js-title-input">Project Title</label></strong>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Enter Project Title"/>
+                </div>
+                <div class="mb-3">
+                    <strong><label class="form-label js-description-input">Project Description</label></strong>
+                    <input type="text" class="form-control" name="description" id="description"
+                           placeholder="Enter Project Description"/>
+                </div>
+
+                <div class="mb-3 form-check d-flex justify-content-center align-items-center">
+                    <input type="checkbox" class="form-check-input" name="finished" id="finished"/>
+                    <label class="form-check-label ms-2" for="finished"><strong>Finished?</strong></label>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success">Create Project</button>
+                </div>
+            </form>
+            <br/>
+        </div>
+    </div>
+
+    <script>
+        var message_ele = document.getElementsByClassName('alert')
+        setTimeout(function () {
+            message_ele.style.display = 'none'
+        }, 1000)
+    </script>
+{% endblock %}

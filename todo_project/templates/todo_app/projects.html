@@ -1,0 +1,82 @@
+{% extends 'todo_app/base.html' %}
+
+{% block title %}
+    HOME PAGE
+{% endblock %}
+
+{% block content %}
+
+
+
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">TO-DO LIST</h5>
+            <p class="card-text">This is TO-DO list Python Django Web Development</p>
+        </div>
+        <!-- butonu ortalamak için div'in içine aldı -->
+        <div class="text-center">
+            <a class="btn btn-outline-success" href="{% url 'create_project' %}" role="button">Create new project</a>
+        </div>
+        <br/>
+    </div>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Project Name</th>
+                <th scope="col">State</th>
+                <th scope="col">Date and Time</th>
+                <th scope="col">Details</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                {% for project in projects %}
+                    <tr>
+                        {% if project.finished == True %}
+                            <td>
+                                <del>{{ project.title }}</del>
+                            </td>
+                            <td>
+                                <form method="POST" action="{% url 'no_finish_project' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="project_id" value="{{ project.id }}">
+                                    <button type="submit" class="btn btn-success">Finished</button>
+                                </form>
+                            </td>
+                        {% else %}
+                            <td>
+                                {{ project.title }}
+                            </td>
+                            <td>
+                                <form method="POST" action="{% url 'yes_finish_project' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="project_id" value="{{ project.id }}">
+                                    <button type="submit" class="btn btn-primary">Not-finished</button>
+                                </form>
+                            </td>
+                        {% endif %}
+
+                        <td>
+                            {{ project.date }}
+                        </td>
+                        <td>
+                            <a type="button" class="btn btn-warning" href="{% url 'project_details' project.id %}">Details</a>
+                        </td>
+
+                        <td>
+                            <a type="button" class="btn btn-danger"
+                               href="{% url 'delete_project' project.id %}">Delete</a>
+
+                    </tr>
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+<script>
+
+</script>
