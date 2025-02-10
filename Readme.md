@@ -16,7 +16,7 @@ Follow these steps to set up and run the project locally:
 
 ### 1️⃣ Clone the repository  
 ```shell
-git clone https://github.com/your-username/todo_app.git
+git clone https://github.com/harnkya/TodoProject.git
 cd todo_project
 ```
 ### 2️⃣ Install dependencies
